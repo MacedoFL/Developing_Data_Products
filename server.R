@@ -1,14 +1,7 @@
-
 # This is the server logic for a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
 
 library(shiny)
 library(ggplot2)
-#library(plyr)
-
 
 shinyServer(function(input, output) {
 
@@ -45,6 +38,7 @@ shinyServer(function(input, output) {
     })
 
     output$summary <- renderUI({
+        # Generate summary report
         i1 <- input$prevalence
         i1 <- input$healthyMean
         i1 <- input$healthySD
@@ -64,4 +58,21 @@ shinyServer(function(input, output) {
         txt
     })
 
+    output$help <- renderUI({
+        # Generate help page
+        tags$div(tags$h4('Overview'),
+                 tags$p('This simulation creates hipotetical test results for healty and sick patients.'),
+                 tags$p('Then it uses a single threshold value to classify patients as healty or sick.'),
+                 tags$p('While there is an overlap between both groups, we cannot get a perfect classification.'),
+                 tags$p('So, play with the controls to see how it affects the classification performance.'),
+                 tags$h4('Controls'),
+                 tags$p('Prevalence of Condition: percentage of sick people in the population.'),
+                 tags$p('Mean of Healthy Population: average test result values for the healty group.'),
+                 tags$p('Standard Deviation of Healthy Population: standard deviation of test result values for the healty group.'),
+                 tags$p('Mean of Sick Population: average test result values for the sick group.'),
+                 tags$p('Standard Deviation of Sick Population: standard deviation of test result values for the sick group.'),
+                 tags$p('Diagnosis Threshold: threshold for classification, test values below the threshold are considered as healty.')
+                 )
+
+        })
 })
