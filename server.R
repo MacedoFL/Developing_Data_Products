@@ -78,7 +78,7 @@ shinyServer(function(input, output) {
                  tags$li('True Positive: Sick patients correctlly classified as sick'),
                  tags$li('False Negative: Sick patients misclassified as healty'),
                  tags$li('False Positive: Healty patients misclassified as sick'),
-                 tags$a(href="en.wikipedia.org/wiki/Sensitivity_and_specificity", "Read more about sensitivity and specificity on Wikipedia."),
+                 tags$a(href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity", "Read more about sensitivity and specificity on Wikipedia."),
                  tags$h4('Controls'),
                  tags$li('Prevalence of Condition: percentage of sick people in the population.'),
                  tags$li('Mean of Healthy Population: average test result values for the healty group.'),
