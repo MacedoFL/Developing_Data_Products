@@ -5,7 +5,7 @@ library(shiny)
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("Interactive Sensitivity & Specificity Simulation Based on Single Threshold Classification"),
+    titlePanel("Lab Result Classifying Simulator"),
 
     # Sidebar with simulation parameters
     sidebarLayout(
@@ -14,12 +14,18 @@ shinyUI(fluidPage(
                         "Prevalence of Condition:",
                         min = 0,
                         max = 100,
-                        value = 25),
+                        value = 50
+                        ),
+            sliderInput("thresholdValue",
+                        "Diagnosis Threshold:",
+                        min = 0,
+                        max = 300,
+                        value = 155),
             sliderInput("healthyMean",
                         "Mean of Healthy Population:",
                         min = 30,
                         max = 150,
-                        value = 90),
+                        value = 115),
             sliderInput("healthySD",
                         "Standard Deviation of Healthy Population:",
                         min = 0,
@@ -29,17 +35,12 @@ shinyUI(fluidPage(
                         "Mean of Sick Population:",
                         min = 150,
                         max = 300,
-                        value = 150),
+                        value = 200),
             sliderInput("sickSD",
                         "Standard Deviation of Sick Population:",
                         min = 0,
                         max = 60,
-                        value = 50),
-            sliderInput("thresholdValue",
-                        "Diagnosis Threshold:",
-                        min = 0,
-                        max = 300,
-                        value = 125)
+                        value = 30)
         ),
 
         # Show result of similation and help page

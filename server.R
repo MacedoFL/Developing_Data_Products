@@ -46,27 +46,33 @@ shinyServer(function(input, output) {
         i1 <- input$sickSD
         i1 <- input$thresholdValue
         txt <- tags$div(
-            tags$h3("Results"),
-            tags$h4(paste("Sensitivity:", round(TPR, 3))),
-            tags$h4(paste("Specificity:", round(SPC, 3))),
-            tags$h4(paste("Accuracy:", round(ACC, 3))),
-            tags$h4(paste("True Negative:", TN)),
-            tags$h4(paste("True Positive:", TP)),
-            tags$h4(paste("False Negative:", FN)),
-            tags$h4(paste("False Positive:", FP))
-        )
+#             tags$h3("Results"),
+#             tags$h4(paste("Sensitivity:", round(TPR, 3))),
+#             tags$h4(paste("Specificity:", round(SPC, 3))),
+#             tags$h4(paste("Accuracy:", round(ACC, 3))),
+#             tags$h4(paste("True Negative:", TN)),
+#             tags$h4(paste("True Positive:", TP)),
+#             tags$h4(paste("False Negative:", FN)),
+#             tags$h4(paste("False Positive:", FP))
+tags$table( width = "100%",
+           tags$tr(tags$td(tags$h4(paste("Sensitivity:", round(TPR, 3)))),tags$td(tags$h4(paste("True Negative:", TN)))),
+         tags$tr(tags$td(tags$h4(paste("Specificity:", round(SPC, 3)))),tags$td(tags$h4(paste("True Positive:", TP)))),
+         tags$tr(tags$td(tags$h4(paste("Accuracy:", round(ACC, 3)))),tags$td(tags$h4(paste("False Negative:", FN)))),
+         tags$tr(tags$td(),tags$td(tags$h4(paste("False Positive:", FP)))))
+
+ )
         txt
     })
 
     output$help <- renderUI({
         # Generate help page
         tags$div(tags$h4('Overview'),
-                 tags$p('This simulation creates hipotetical test results for healty and sick patients.'),
-                 tags$p('Then it uses a single threshold value to classify patients as healty or sick.'),
+                 tags$p('This simulation creates hipotetical test results for healthy and sick patients.'),
+                 tags$p('Then it uses a single threshold value to classify patients as healthy or sick.'),
                  tags$p('While there is an overlap between both groups, we cannot get a perfect classification.'),
                  tags$p('So, play with the controls to see how it affects the classification performance.'),
                  tags$h4('Plot'),
-                 tags$p('The plot shows the healty group in blue and the sick group in red.'),
+                 tags$p('The plot shows the healthy group in blue and the sick group in red.'),
                  tags$p('The classification threshold shows as a vertical dottet line.'),
                  tags$p('The overlaping area above and below the threshold show in darker colors. That is where the misclassification happens.'),
                  tags$h4('Results'),
@@ -74,18 +80,18 @@ shinyServer(function(input, output) {
                  tags$li('Sensitivity: True positive rate for the classification'),
                  tags$li('Specificity: True negative rate for the classification'),
                  tags$li('Accuracy: The overall accuracy for the classification'),
-                 tags$li('True Negative: Healty patients correctlly classified as healty'),
+                 tags$li('True Negative: healthy patients correctlly classified as healthy'),
                  tags$li('True Positive: Sick patients correctlly classified as sick'),
-                 tags$li('False Negative: Sick patients misclassified as healty'),
-                 tags$li('False Positive: Healty patients misclassified as sick'),
+                 tags$li('False Negative: Sick patients misclassified as healthy'),
+                 tags$li('False Positive: healthy patients misclassified as sick'),
                  tags$a(href="https://en.wikipedia.org/wiki/Sensitivity_and_specificity", "Read more about sensitivity and specificity on Wikipedia."),
                  tags$h4('Controls'),
                  tags$li('Prevalence of Condition: percentage of sick people in the population.'),
-                 tags$li('Mean of Healthy Population: average test result values for the healty group.'),
-                 tags$li('Standard Deviation of Healthy Population: standard deviation of test result values for the healty group.'),
+                 tags$li('Mean of Healthy Population: average test result values for the healthy group.'),
+                 tags$li('Standard Deviation of Healthy Population: standard deviation of test result values for the healthy group.'),
                  tags$li('Mean of Sick Population: average test result values for the sick group.'),
                  tags$li('Standard Deviation of Sick Population: standard deviation of test result values for the sick group.'),
-                 tags$li('Diagnosis Threshold: threshold for classification, test values below the threshold are considered as healty.')
+                 tags$li('Diagnosis Threshold: threshold for classification, test values below the threshold are considered as healthy.')
                  )
 
         })
